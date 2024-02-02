@@ -4,67 +4,71 @@ import { movieID } from "../../constants/store";
 import Details from "../details/details";
 import loader from "../../assets/loader.svg";
 import MovieTile from "../../components/common/movieTile";
+import useMovieData from "../../hooks/useMovieData";
 
 let API_KEY = import.meta.env.VITE_AUTH;
 
 function Trend() {
-  const [popular, setPopular] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [validate, setValidate] = useState(false);
+  // const [popular, setPopular] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [validate, setValidate] = useState(false);
   const [popUp, setPopUp] = useState(false);
-  const [topRated, setTopRated] = useState([]);
-  const [upcoming, setUpcoming] = useState([]);
-  const [retry, setRetry] = useState(false);
+  // const [topRated, setTopRated] = useState([]);
+  // const [upcoming, setUpcoming] = useState([]);
+  // const [retry, setRetry] = useState(false);
   const [id, setId] = useState(movieID);
 
-  useEffect(() => {
-    const pop = {
-      method: "GET",
-      url: "https://api.themoviedb.org/3/movie/popular",
-      headers: {
-        accept: "application/json",
-        Authorization: API_KEY,
-      },
-    };
+  const { popular, topRated, upcoming, loading, validate, retry } =
+    useMovieData();
 
-    const topR = {
-      method: "GET",
-      url: "https://api.themoviedb.org/3/movie/top_rated",
-      headers: {
-        accept: "application/json",
-        Authorization: API_KEY,
-      },
-    };
+  // useEffect(() => {
+  //   const pop = {
+  //     method: "GET",
+  //     url: "https://api.themoviedb.org/3/movie/popular",
+  //     headers: {
+  //       accept: "application/json",
+  //       Authorization: API_KEY,
+  //     },
+  //   };
 
-    const up = {
-      method: "GET",
-      url: "https://api.themoviedb.org/3/movie/upcoming",
-      headers: {
-        accept: "application/json",
-        Authorization: API_KEY,
-      },
-    };
+  //   const topR = {
+  //     method: "GET",
+  //     url: "https://api.themoviedb.org/3/movie/top_rated",
+  //     headers: {
+  //       accept: "application/json",
+  //       Authorization: API_KEY,
+  //     },
+  //   };
 
-    const getPop = axios.request(pop);
-    const getTopR = axios.request(topR);
-    const getUp = axios.request(up);
+  //   const up = {
+  //     method: "GET",
+  //     url: "https://api.themoviedb.org/3/movie/upcoming",
+  //     headers: {
+  //       accept: "application/json",
+  //       Authorization: API_KEY,
+  //     },
+  //   };
 
-    axios
-      .all([getPop, getTopR, getUp])
-      .then(
-        axios.spread((...allData) => {
-          setPopular(allData[0].data.results);
-          setTopRated(allData[1].data.results);
-          setUpcoming(allData[2].data.results);
-          setLoading(false);
-        })
-      )
+  //   const getPop = axios.request(pop);
+  //   const getTopR = axios.request(topR);
+  //   const getUp = axios.request(up);
 
-      .catch(function (error) {
-        console.log(error);
-        setValidate(true);
-      });
-  }, [retry]);
+  //   axios
+  //     .all([getPop, getTopR, getUp])
+  //     .then(
+  //       axios.spread((...allData) => {
+  //         setPopular(allData[0].data.results);
+  //         setTopRated(allData[1].data.results);
+  //         setUpcoming(allData[2].data.results);
+  //         setLoading(false);
+  //       })
+  //     )
+
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       setValidate(true);
+  //     });
+  // }, [retry]);
 
   // ClosePopUp
 

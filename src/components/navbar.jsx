@@ -19,7 +19,7 @@ function Navbar() {
   }, [theme]);
 
   return (
-    <nav className="sticky top-0 z-20 bg-primary px-2 dark:bg-primaryDark">
+    <nav className="lg:w-200 sticky top-0 z-20 bg-primary px-2 dark:bg-primaryDark">
       <div className="flex py-5">
         <section className="flex basis-full justify-between lg:basis-2/3">
           <Link
@@ -40,7 +40,7 @@ function Navbar() {
           </div>
         </section>
         {/* Links */}
-        <section className="hidden basis-5/6 items-center justify-between lg:flex">
+        <section className="hidden basis-3/5 items-center justify-between lg:flex">
           {Path.map((item, index) => (
             <Link to={item.link} key={index}>
               <button className='after:content-[" "] relative flex items-center px-3 py-1.5 text-sub/70 transition-all duration-300 ease-linear after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-purple after:transition-[0.3s] hover:text-purple hover:after:w-full hover:after:duration-500'>
